@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Idecom.Host.Log4net</id>
+    <version>1.0.3</version>
+    <authors>Evgeny Komarevtsev</authors>
+    <description>Idecom host Log4net integration</description>
+    <releaseNotes>fixed the log file name to be the current executable plus full path.</releaseNotes>
+    <dependencies>
+      <dependency id="Idecom.Host" />
+      <dependency id="log4net" version="[1.2.10]" />
+    </dependencies>
+  </metadata>
+ <files>
+    <file src="bin\debug\Idecom.Host.Log4Net.dll" target="lib" />
+    <file src="bin\debug\Idecom.Host.Log4Net.pdb" target="lib" />
+    <file src="**\*.cs" target="src" exclude="bin\**;obj\**;tools\**" />
+  </files>
+</package>

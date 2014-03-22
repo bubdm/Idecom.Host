@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Idecom.Host.CastleWindsor</id>
+    <version>1.1.8</version>
+    <authors>Evgeny Komarevtsev</authors>
+    <description>Idecom host CastleWindsor integration</description>
+    <dependencies>
+      <dependency id="Idecom.Host" />
+      <dependency id="Castle.Windsor" />
+    </dependencies>
+  </metadata>
+ <files>
+    <file src="bin\debug\Idecom.Host.CastleWindsor.dll" target="lib" />
+    <file src="bin\debug\Idecom.Host.CastleWindsor.pdb" target="lib" />
+    <file src="**\*.cs" target="src" exclude="bin\**;obj\**;tools\**" />
+  </files>
+</package>

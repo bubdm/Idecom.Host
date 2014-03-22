@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Idecom.Host.Log4net.CastleWindsor</id>
+    <version>1.0.2</version>
+    <authors>Evgeny Komarevtsev</authors>
+    <description>Idecom host Log4net Castle Windsor installer</description>
+    <dependencies>
+      <dependency id="Idecom.Host" />
+      <dependency id="Idecom.Host.Log4net" />
+      <dependency id="Idecom.Host.CastleWindsor" />
+    </dependencies>
+  </metadata>
+ <files>
+    <file src="bin\debug\Idecom.Host.Log4Net.Windsor.dll" target="lib" />
+    <file src="bin\debug\Idecom.Host.Log4Net.Windsor.pdb" target="lib" />
+    <file src="**\*.cs" target="src" exclude="bin\**;obj\**;tools\**" />
+  </files>
+</package>
