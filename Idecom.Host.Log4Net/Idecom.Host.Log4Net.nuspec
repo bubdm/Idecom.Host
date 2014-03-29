@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Idecom.Host.Log4net</id>
-    <version>1.0.0</version>
+    <version>1.0.4</version>
     <authors>Evgeny Komarevtsev</authors>
     <description>Idecom host Log4net integration</description>
     <releaseNotes>fixed the log file name to be the current executable plus full path.</releaseNotes>

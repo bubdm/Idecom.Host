@@ -4,7 +4,7 @@ if(!$toolsPath){
 	$project = Get-Project
 }
 
-function Add-StartProgramIfNeeded {
+function UpdateProjectToStartIdecomHostIfNotAlready {
 	[xml] $prjXml = Get-Content $project.FullName
 	foreach($PropertyGroup in $prjXml.project.ChildNodes)
 	{
@@ -35,6 +35,54 @@ function Add-StartProgramIfNeeded {
 	$writer.Close()
 }
 
+
+function FindHostConfigurationClass($elem) {
+    if ($elem.IsCodeType -and ($elem.Kind -eq [EnvDTE.vsCMElement]::vsCMElementClass)) 
+    {            
+        foreach ($e in $elem.Bases) {
+            if($e.FullName -eq "Idecom.Host.Interfaces.HostedService") {
+                return $elem
+            }
+            
+            return FindHostConfigurationClass($e)
+            
+        }
+    } 
+    elseif ($elem.Kind -eq [EnvDTE.vsCMElement]::vsCMElementNamespace) {
+        foreach ($e in $elem.Members) {
+            $temp = FindHostConfigurationClass($e)
+            if($temp -ne $null) {
+                return $temp
+            }
+        }
+    }
+    $null
+}
+
+function CheckAlreadyHasHostConfiguration($project) {
+    foreach ($item in $project.ProjectItems) {
+        foreach ($codeElem in $item.FileCodeModel.CodeElements) {
+            $elem = FindHostConfigurationClass($codeElem)
+            if($elem -ne $null) {
+                return $true
+            }
+        }
+    }
+    $false
+}
+
+function AddHostConfigClassIfNeeded {
+	$alreadyHasConfiguration = CheckAlreadyHasHostConfiguration($project)
+	if($alreadyHasConfiguration -eq $false) {
+		$namespace = $project.Properties.Item("DefaultNamespace").Value
+		$projectDir = [System.IO.Path]::GetDirectoryName($project.FullName)
+		$endpoingConfigPath = [System.IO.Path]::Combine( $projectDir, "HostConfig.cs")
+		Get-Content  "$installPath\Tools\HostConfig.cs" | ForEach-Object { $_ -replace "idecomrootns", $namespace } | Set-Content ($endpoingConfigPath)
+		$project.ProjectItems.AddFromFile( $endpoingConfigPath )
+	}
+}
+
+
+AddHostConfigClassIfNeeded
 $project.Save()
-Add-StartProgramIfNeeded
-$project.Save()
+UpdateProjectToStartIdecomHostIfNotAlready
