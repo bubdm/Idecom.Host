@@ -1,4 +1,4 @@
-C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe /property:Configuration=Debug /property:Platform="Any CPU" /v:q
+call build.cmd
 
 del _GeneratedNuGetPackages /F /S /Q
 MD _GeneratedNuGetPackages

@@ -1,4 +1,4 @@
-Idecom.Host - yet another lightweight opinionated windows service host
+Idecom.Host - low friction windows service host
 --------
 
 A service host which could be added to a library project to add windows service features. 
