@@ -1,7 +1,9 @@
 Idecom.Host - yet another lightweight opinionated windows service host
 --------
 
-The hosting process which comes as a replacement for NServiceBus.Host
+A service host which could be added to a library project to add windows service features. 
+
+You can debug your service by just F5 on the project as well.
 
 Create an empty library project in VisualStudio. Please don't create a console app as this is not compatible with the hosting process.
 
