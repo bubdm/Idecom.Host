@@ -2,16 +2,16 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Idecom.Host.Log4net</id>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <authors>Evgeny Komarevtsev</authors>
     <description>Idecom host Log4net integration</description>
-    <releaseNotes>Added GitHub reference.</releaseNotes>
+    <releaseNotes>Upgraded log4net to 2.0.3</releaseNotes>
     <projectUrl>https://github.com/evgenyk/Idecom.Host</projectUrl>
     <tags>Idecom.Host Log4Net</tags>
     <licenseUrl>https://github.com/evgenyk/Idecom.Host/blob/master/LICENSE</licenseUrl>
     <dependencies>
       <dependency id="Idecom.Host" />
-      <dependency id="log4net" version="[1.2.10]" />
+      <dependency id="log4net" />
     </dependencies>
   </metadata>
  <files>

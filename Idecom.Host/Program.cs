@@ -62,7 +62,7 @@
                 Type firstOrDefault = services.FirstOrDefault();
 
                 if (firstOrDefault == null)
-                    throw new Exception("A class implementing ServiceControl could not be founmd.");
+                    throw new Exception("A class implementing ServiceControl could not be found.");
                 _hostCache = containerAdapter.Resolve<HostedService>(firstOrDefault);
 
                 if (_hostCache != null) return _hostCache;
