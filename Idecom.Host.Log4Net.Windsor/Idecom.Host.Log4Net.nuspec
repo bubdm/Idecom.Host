@@ -2,10 +2,10 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Idecom.Host.Log4net.CastleWindsor</id>
-    <version>1.0.7</version>
+    <version>1.0.9</version>
     <authors>Evgeny Komarevtsev</authors>
     <description>Idecom host Log4net Castle Windsor installer</description>
-    <releaseNotes>Updated to log4net 2.0.3</releaseNotes>
+    <releaseNotes>Castle 3.3.0</releaseNotes>
     <projectUrl>https://github.com/evgenyk/Idecom.Host</projectUrl>
     <tags>Idecom.Host CastleWindsor Log4Net</tags>
     <licenseUrl>https://github.com/evgenyk/Idecom.Host/blob/master/LICENSE</licenseUrl>
