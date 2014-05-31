@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Idecom.Host</id>
-    <version>1.0.6</version>
+    <version>1.0.10</version>
     <authors>Evgeny Komarevtsev</authors>
     <description>Idecom host - low friction windows service host</description>
     <releaseNotes>Added GitHub reference.</releaseNotes>

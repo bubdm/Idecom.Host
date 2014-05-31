@@ -17,11 +17,6 @@ function UpdateProjectToStartIdecomHostIfNotAlready {
     $exeName = "Idecom.Host.exe"
 
 	$propertyGroupElement = $prjXml.CreateElement("PropertyGroup", $prjXml.Project.GetAttribute("xmlns"));
-
-        $condition = $prjXml.CreateAttribute("Condition");
-	$condition.Value = " `'`$(Configuration)|`$(Platform)`' == `'`$(Configuration)|`$(Platform)`' ";
-	$propertyGroupElement.Attributes.Append($condition)
-
 	$startActionElement = $prjXml.CreateElement("StartAction", $prjXml.Project.GetAttribute("xmlns"));
 	$propertyGroupElement.AppendChild($startActionElement) | Out-Null
 	$propertyGroupElement.StartAction = "Program"
@@ -38,6 +33,11 @@ function UpdateProjectToStartIdecomHostIfNotAlready {
 	$prjXml.WriteTo($writer)
 	$writer.Flush()
 	$writer.Close()
+
+	$project.ConfigurationManager.ActiveConfiguration.Properties.Item("StartAction").Value = 1;
+	$path = Split-Path $project.FullName;
+        $outputPath = $project.ConfigurationManager.ActiveConfiguration.Properties.Item("OutputPath").Value;
+	$project.ConfigurationManager.ActiveConfiguration.Properties.Item("StartProgram").Value = "$path\$outputPath$exeName";
 }
 
 
@@ -92,5 +92,3 @@ AddHostConfigClassIfNeeded
 $project.Save()
 UpdateProjectToStartIdecomHostIfNotAlready
 
-$test = Get-Project $project.Name
-$test.ReevaluateIfNecessary()

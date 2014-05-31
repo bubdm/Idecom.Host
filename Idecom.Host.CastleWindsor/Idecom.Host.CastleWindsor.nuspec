@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Idecom.Host.CastleWindsor</id>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
     <authors>Evgeny Komarevtsev</authors>
     <description>Idecom host CastleWindsor integration</description>
     <releaseNotes>Castle 3.3.0</releaseNotes>
@@ -17,6 +17,7 @@
  <files>
     <file src="bin\debug\Idecom.Host.CastleWindsor.dll" target="lib" />
     <file src="bin\debug\Idecom.Host.CastleWindsor.pdb" target="lib" />
+    <file src="tools\*.*" target="tools" />
     <file src="**\*.cs" target="src" exclude="bin\**;obj\**;tools\**" />
   </files>
 </package>
