@@ -4,7 +4,7 @@ using Castle.Windsor.Installer;
 using Idecom.Host.CastleWindsor;
 using Idecom.Host.Interfaces;
 
-namespace SampleService.Startup
+namespace SampleService
 {
     public class Container : IWantToSpecifyContainer
     {
