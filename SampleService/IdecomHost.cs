@@ -1,25 +1,14 @@
-﻿namespace SampleService
-{
-    using System;
-    using Castle.MicroKernel.Registration;
-    using Castle.Windsor;
-    using Castle.Windsor.Installer;
-    using log4net;
-    using Topshelf;
-    using Topshelf.HostConfigurators;
-    using Idecom.Host.CastleWindsor;
-    using Idecom.Host.Interfaces;
+﻿using System;
+using Idecom.Host.Interfaces;
+using log4net;
+using Topshelf;
+using Topshelf.HostConfigurators;
 
-    public class IdecomHost : HostedService, IWantToSpecifyContainer
+namespace SampleService
+{
+    public class IdecomHost : HostedService
     {
         public ILog Log { get; set; }
-
-        public IContainerAdapter ConfigureContainer()
-        {
-            var container = new WindsorContainer();
-            container.Install(FromAssembly.InDirectory(new AssemblyFilter("")));
-            return new CastleWindsorContainerAdapter(container);
-        }
 
         public override bool Start(HostControl hostControl)
         {

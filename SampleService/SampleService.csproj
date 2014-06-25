@@ -78,6 +78,7 @@
     <Compile Include="IdecomHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Start.cs" />
+    <Compile Include="Container.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Idecom.Host.CastleWindsor\Idecom.Host.CastleWindsor.csproj">
