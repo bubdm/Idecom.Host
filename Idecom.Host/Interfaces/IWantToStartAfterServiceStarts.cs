@@ -5,4 +5,10 @@
         void AfterStart();
         void BeforeStop();
     }
+
+    public interface IWantToInitializeAfterServiceStarts
+    {
+        void Initialize();
+        void Destroy();
+    }
 }

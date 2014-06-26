@@ -1,28 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Idecom.Host.Interfaces;
+using Idecom.Host.Utility;
+using Topshelf;
 
 namespace Idecom.Host
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using Interfaces;
-    using Topshelf;
-    using Utility;
-
-    public class WantToStartThreadManager
+    public class WantToInitializeThreadManager
     {
         readonly IContainerAdapter _containerAdapter;
         List<Type> _types;
 
-        public WantToStartThreadManager(IContainerAdapter containerAdapter)
+        public WantToInitializeThreadManager(IContainerAdapter containerAdapter)
         {
             _containerAdapter = containerAdapter;
-            _types = AssemblyScanner.GetScannableAssemblies().SelectMany(x => x.GetTypes()).Implementing<IWantToStartAfterServiceStarts>().ToList();
+            _types = AssemblyScanner.GetScannableAssemblies().SelectMany(x => x.GetTypes()).Implementing<IWantToInitializeAfterServiceStarts>().ToList();
         }
 
 
-        List<IWantToStartAfterServiceStarts> _resolvedServicesCache;
-
+        List<IWantToInitializeAfterServiceStarts> _resolvedServicesCache;
         public Task BeforeStart(HostStartedContext hostStartedContext)
         {
             return Task.Factory.StartNew(() =>
@@ -31,11 +29,11 @@ namespace Idecom.Host
                 {
                     _resolvedServicesCache = _types.Select(type =>
                     {
-                        var service = _containerAdapter.Resolve<IWantToStartAfterServiceStarts>(type);
+                        var service = _containerAdapter.Resolve<IWantToInitializeAfterServiceStarts>(type);
                         if (service == null)
                         {
                             _containerAdapter.Configure(type, Lifecycle.Singleton);
-                            service = _containerAdapter.Resolve<IWantToStartAfterServiceStarts>(type);
+                            service = _containerAdapter.Resolve<IWantToInitializeAfterServiceStarts>(type);
                         }
                         return service;
                     }).ToList();
@@ -45,7 +43,7 @@ namespace Idecom.Host
                 {
                     try
                     {
-                        service.AfterStart();
+                        service.Initialize();
                     }
                     catch (Exception e)
                     {
@@ -63,7 +61,7 @@ namespace Idecom.Host
                 {
                     try
                     {
-                        service.BeforeStop();
+                        service.Destroy();
                         _containerAdapter.Release(service);
                     }
                     catch (Exception e)

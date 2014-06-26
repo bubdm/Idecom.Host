@@ -14,6 +14,7 @@
         static int Main()
         {
             var containerAdapter = DiscoverContainerAdapter();
+            var iWantToInitializeThreadManager = new WantToInitializeThreadManager(containerAdapter);
             var iWantToStartThreadManager = new WantToStartThreadManager(containerAdapter);
             var service = DiscoverService(containerAdapter);
 
@@ -29,9 +30,8 @@
                     hostSettings.WhenContinued((a, b) => a.Continue(b));
                     hostSettings.WhenShutdown((a, b) => a.Continue(b));
                     hostSettings.WhenSessionChanged(((hostedService, control, changedArguments) => hostedService.SessionChanged(control, changedArguments)));
-                    hostSettings.AfterStartingService(iWantToStartThreadManager.BeforeStart);
-                    hostSettings.BeforeStoppingService(iWantToStartThreadManager.BeforeStop);
-
+                    hostSettings.AfterStartingService(hostStartedContext => iWantToInitializeThreadManager.BeforeStart(hostStartedContext).ContinueWith(task => iWantToStartThreadManager.BeforeStart(hostStartedContext)).Wait());
+                    hostSettings.BeforeStoppingService(hostStartedContext => iWantToStartThreadManager.BeforeStop(hostStartedContext).ContinueWith(task => iWantToInitializeThreadManager.BeforeStop(hostStartedContext)).Wait());
                 });
 
                 service.ConfigureHostDefault(hostConfigurator);
