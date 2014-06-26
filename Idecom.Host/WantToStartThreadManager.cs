@@ -49,7 +49,7 @@ namespace Idecom.Host
                     }
                     catch (Exception e)
                     {
-                        Console.WriteLine("Error starting IWantToStartAfterServiceStarts service: " + e.Message);
+                        Console.WriteLine("Error starting IWantToStartAfterServiceStarts service: " + e);
                     }
                 }
             });
