@@ -1,6 +1,4 @@
-﻿using Castle.MicroKernel.Registration;
-using Castle.Windsor;
-using Castle.Windsor.Installer;
+﻿using Castle.Windsor;
 using Idecom.Host.CastleWindsor;
 using Idecom.Host.Interfaces;
 
@@ -10,9 +8,7 @@ namespace SampleService
     {
         public IContainerAdapter ConfigureContainer()
         {
-            var container = new WindsorContainer();
-            container.Install(FromAssembly.InDirectory(new AssemblyFilter("")));
-            return new CastleWindsorContainerAdapter(container);
+            return new CastleWindsorContainerAdapter(new WindsorContainer(), true);
         }
     }
 }

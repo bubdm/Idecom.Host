@@ -1,4 +1,8 @@
-﻿namespace Idecom.Host.CastleWindsor
+﻿using Castle.Core.Internal;
+using Castle.Windsor.Installer;
+using Idecom.Host.Utility;
+
+namespace Idecom.Host.CastleWindsor
 {
     using System;
     using System.Linq;
@@ -11,9 +15,26 @@
     {
         readonly IWindsorContainer _container;
 
-        public CastleWindsorContainerAdapter(IWindsorContainer container = null)
+        public CastleWindsorContainerAdapter(IWindsorContainer container = null, bool runInstallers = false)
         {
             _container = container ?? new WindsorContainer();
+
+            if (runInstallers)
+                RunInstallers();
+        }
+
+        private void RunInstallers()
+        {
+            AssemblyScanner.GetScannableAssemblies().ForEach(x =>
+            {
+                try
+                {
+                    _container.Install(FromAssembly.Instance(x));
+                }
+                catch
+                {
+                }
+            });
         }
 
         public T Resolve<T>(Type service)
