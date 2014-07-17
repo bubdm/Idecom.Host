@@ -11,6 +11,8 @@
         static HostedService _hostCache;
         static readonly object LockRoot = new object();
 
+        //ILMerge.exe /out:SelfContainedProgram.exe /t:exe /internalize:ilmerge.txt Idecom.Host.exe Topshelf.dll
+        //ilmergw.txt: Idecom.Host.\*
         static int Main()
         {
             var containerAdapter = DiscoverContainerAdapter();
