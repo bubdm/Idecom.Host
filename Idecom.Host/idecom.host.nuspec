@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Idecom.Host</id>
-    <version>1.0.14</version>
+    <version>1.0.15</version>
     <authors>Evgeny Komarevtsev</authors>
     <description>Idecom host - low friction windows service host</description>
     <projectUrl>https://github.com/evgenyk/Idecom.Host</projectUrl>
     <tags>Idecom.Host Windows Service</tags>
     <licenseUrl>https://github.com/evgenyk/Idecom.Host/blob/master/LICENSE</licenseUrl>
     <dependencies>
-      <dependency id="Topshelf" version="[3.1.3]" />
+      <dependency id="Topshelf" version="[3.1.4]" />
     </dependencies>
   </metadata>
  <files>
