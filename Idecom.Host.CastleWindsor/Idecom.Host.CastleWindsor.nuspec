@@ -2,10 +2,9 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Idecom.Host.CastleWindsor</id>
-    <version>1.0.9</version>
+    <version>1.0.10</version>
     <authors>Evgeny Komarevtsev</authors>
     <description>Idecom host CastleWindsor integration</description>
-    <releaseNotes>Castle 3.3.0</releaseNotes>
     <projectUrl>https://github.com/evgenyk/Idecom.Host</projectUrl>
     <tags>Idecom.Host CastleWindsor</tags>
     <licenseUrl>https://github.com/evgenyk/Idecom.Host/blob/master/LICENSE</licenseUrl>
